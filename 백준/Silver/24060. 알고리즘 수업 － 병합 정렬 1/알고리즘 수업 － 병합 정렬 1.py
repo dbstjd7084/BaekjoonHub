@@ -49,5 +49,4 @@ def merge(p, q, r):
 merge_sort(0, N - 1)
 
 # K번째 저장이 발생하지 않으면 -1 출력
-if (K > count):
-    print(-1)
+print(-1)
