@@ -12,19 +12,17 @@ B = list(map(int, sys.stdin.readline().split()))
 # 오름차순 정렬
 A.sort()
 
-def BinarySearch(num, min, max):
-    p = (min + max) // 2
-    if A[p] == num:
-        print(1)
-    elif min + 1 == max:
-        if A[p+1] == num:
-            print(1)
+def BinarySearch(num):
+    left, right = 0, N - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if A[mid] == num:
+            return 1
+        elif A[mid] < num:
+            left = mid + 1
         else:
-            print(0)
-    elif A[p] > num:
-        BinarySearch(num, min, p)
-    else:
-        BinarySearch(num, p, max)
+            right = mid - 1
+    return 0
 
 for i in B:
-    BinarySearch(i, 0, len(A) - 1)
+    print(BinarySearch(i))
