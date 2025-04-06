@@ -14,14 +14,15 @@ def get2nd(matrix, matrix2):
 
 # 222-풀링
 def pulling(matrix):
-    size = len(matrix)
+    # N은 2의 거듭제곱임
+    size = N
     while size > 1:
+        # 222-풀링이 될 net_matrix
         new_matrix = []
         for y in range(0, size, 2):
             row = []
             for x in range(0, size, 2):
-                group = matrix[y][x:x+2] + matrix[y+1][x:x+2]
-                row.append(sorted(group)[-2])
+                row.append(sorted(matrix[y][x:x+2] + matrix[y+1][x:x+2])[-2])
             new_matrix.append(row)
         size//=2
         matrix = new_matrix
