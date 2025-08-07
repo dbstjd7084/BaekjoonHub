@@ -4,21 +4,16 @@ N = int(sys.stdin.readline())
 
 # 에라토스테네스의 체 알고리즘
 def getPrimeNumbers(n):
-    arr = [i for i in range(n+1)]
-    arr[1] = 0
-    # 루트n
-    end = int(n**(1/2))
-    for i in range(2, end+1):
-        if arr[i] == 0:
-            continue
-        for j in range(i*i, n+1, i):
-            arr[j] = 0
-    # 소수만 반환
-    return [x for x in arr if x != 0]
+    sieve = [True] * (n+1)
+    sieve[0] = sieve[1] = False
+    for i in range(2, int(n**0.5) + 1):
+        if sieve[i]:
+            for j in range(i*i, n+1, i):
+                sieve[j] = False
+    return [i for i, is_prime in enumerate(sieve) if is_prime]
 
 부분합 = 0
-start = 0
-end = 0
+start = end = 0
 arr = getPrimeNumbers(N)
 size = len(arr)
 count = 0
@@ -29,9 +24,9 @@ while True:
             count += 1
         부분합 -= arr[start]
         start += 1
+    elif end == size:
+        break
     else:
-        if end == size:
-            break
         부분합 += arr[end]
         end += 1
 
